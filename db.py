@@ -55,7 +55,7 @@ class person_db:
     return data[0]
 
 
-  def get_all_info(self, id):
+  def get_all_info(self):
     self.cur.execute(f"""SELECT * FROM {self.table_name};""")
 
     desc = self.cur.description

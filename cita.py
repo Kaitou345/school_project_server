@@ -99,8 +99,16 @@ class cita:
 
 
   def get_profiles(self):
+    
+    profiles = self.person_db.get_all_info()
 
-    return self.person_db.get_all_info()
+    for profile in profiles:
+      id = profile["id"]
+      path = f"{self.images_path}{id}/"
+      img_name = os.listdir(path)[0]
+      profile["image"] = Image.open(f"{path}{img_name}")
+
+    return profiles
 
 
   def get_image(self,id):
