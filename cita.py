@@ -1,6 +1,5 @@
-from email.mime import image
 from genericpath import exists
-import imp
+from PIL import Image
 from face_recognition.api import face_encodings
 import numpy as np
 import face_recognition
@@ -81,7 +80,14 @@ class cita:
       encodings =  self.encoding_db.get_encodings(id)
 
       if __compare_encodings__(encodings, image_to_compare):
-        return self.person_db.get_info(id)
+        info = self.person_db.get_info(id)
+
+        path = f"{self.images_path}{id}/"
+        img_name = os.listdir(path)[0]
+
+        info["image"] = Image.open(f"{path}{img_name}")
+
+        return info
 
 
   def delete_entry(self, id):
