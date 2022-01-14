@@ -1,0 +1,8 @@
+*.db
+__pycache__
+known_faces
+registered_images
+throwaway
+unknown_faces
+test2.py
+test3.py
