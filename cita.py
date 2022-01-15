@@ -6,6 +6,9 @@ import face_recognition
 from numpy.lib.type_check import imag
 import db
 import os
+import os
+import sys
+import shutil
 
 MODEL = "hog"
 TOLERANCE = 0.5
@@ -46,10 +49,6 @@ class cita:
       os.mkdir(self.images_path)
 
   def register_entry(self, pil_images, name, email="Not Available", address="Not Available", contact_number="Not Available", age=0):
-
-    # TODO save images in local storage
-
-      
 
     uuid = self.person_db.insert_person(name, email, address, contact_number, age)
 
@@ -93,6 +92,9 @@ class cita:
   def delete_entry(self, id):
 
     # TODO delete images from local storage
+    path = f"{self.images_path}{id}/"
+
+    shutil.rmtree(path, ignore_errors=True)
 
     self.encoding_db.delete_person(id)
     self.person_db.delete_person(id)
