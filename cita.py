@@ -10,7 +10,7 @@ import os
 MODEL = "hog"
 TOLERANCE = 0.5
 UPSAMPLE = 1
-NUM_JITTERS = 5
+NUM_JITTERS = 10
 
 def __convert_into_numpy_images__(pil_images):
   images = []
